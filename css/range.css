@@ -1,0 +1,25 @@
+.range {
+  -webkit-appearance: none;
+  appearance: none;
+  background: #1abc9c;
+  border-radius: 1rem;
+  margin: 1rem;
+}
+
+.range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  transform: scale(2);
+  box-shadow: 0 0 6px 0px #ffffff88;
+  cursor: grab;
+  border: 2px solid #16a085;
+  transition: 0.2s;
+}
+
+.range::-webkit-slider-thumb:active {
+  transform: scale(2.4);
+}

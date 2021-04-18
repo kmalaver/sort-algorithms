@@ -1,31 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="main.css">
-</head>
-<body>
-  <header class="header">
-    <h1>Sort Algorithms</h1>
-    <label for="input-length">Length</label>
-    <input id="input-length" type="range" min="10" max="50" step="1" >
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="header">
+        <strong class="logo"> Sort Algorithms </strong>
+        <div>
+          <label for="input-length">Length</label>
+          <input
+            class="range"
+            id="input-length"
+            type="range"
+            min="10"
+            max="50"
+            step="1"
+          />
 
-    <label for="input-time">Time</label>
-    <input id="input-time" type="range" min="20" max="400" step="10" >
-    
-    
-    <select id="">
-      <option value="">Bubble Sort</option>
-    </select>
-    <button class="btn-action" id="btn-sort">Sort</button>
-    <button class="btn-action" id="btn-cancel" disabled>Cancel</button>
-  </header>
-  <main>
-    <div id="bars-container" class="bars-container"></div>
-  </main>
-  <script type="module" src="index.js"></script>
-</body>
+          <label for="input-time">Time</label>
+          <input
+            class="range"
+            id="input-time"
+            type="range"
+            min="10"
+            max="100"
+            step="10"
+          />
+        </div>
+
+        <label class="select" for="slct">
+          <select id="select-algorithm" required="required">
+            <option value="" disabled="disabled" selected="selected">
+              Select option
+            </option>
+          </select>
+          <svg>
+            <use xlink:href="#select-arrow-down"></use>
+          </svg>
+        </label>
+        <div class="btn-container">
+          <button class="btn-action" id="btn-sort">Sort</button>
+          <button class="btn-action cancel" id="btn-cancel" disabled>
+            Cancel
+          </button>
+        </div>
+      </header>
+      <main id="bars-container" class="bars-container"></main>
+    </div>
+    <svg class="sprites">
+      <symbol id="select-arrow-down" viewbox="0 0 10 6">
+        <polyline points="1 1 5 5 9 1"></polyline>
+      </symbol>
+    </svg>
+    <script type="module" src="js/index.js"></script>
+  </body>
 </html>

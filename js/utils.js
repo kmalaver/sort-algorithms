@@ -24,7 +24,7 @@ export const makeNumberNodes = (numbers) => {
   numbers.forEach((number) => {
     const node = document.createElement('div');
     node.className = 'bar';
-    node.style.height = `${number + 10}px`;
+    node.style.height = `${(number / numbers.length) * 4 + 20}%`;
 
     nodes.push(node);
   });

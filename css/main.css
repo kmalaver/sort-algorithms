@@ -1,0 +1,73 @@
+@import './select.css';
+@import './range.css';
+@import './button.css';
+
+* {
+  box-sizing: border-box;
+  color: #2c3e50;
+}
+
+:root {
+  --c1: #1abc9c09;
+  --c2: #1abc9c2c;
+  --color-main: #1abc9c;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 0;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  background: repeating-linear-gradient(
+    45deg,
+    var(--c1),
+    var(--c1) 15px,
+    var(--c2) 15px,
+    var(--c2) 30px
+  );
+}
+
+.header {
+  padding: 1rem;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 8px 0 #00000022;
+  position: relative;
+}
+
+.logo {
+  font-size: 1.2rem;
+}
+
+.bars-container {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: flex-end;
+  transition: 0.2s;
+  max-width: 1000px;
+  width: 100%;
+  margin: auto;
+  padding: 2rem 1rem 1rem;
+}
+
+.bar {
+  flex: 1 1 0px;
+  background-color: #1abc9c;
+  margin-right: 8px;
+}
+
+.bar.focused {
+  background-color: #f1c40f;
+}
+
+.bar.finish {
+  background-color: #e67e22;
+}
