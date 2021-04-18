@@ -1,0 +1,11 @@
+#app {
+  display: flex;
+  align-items: flex-end;
+}
+
+.bar {
+  width: 20px;
+  height: 80px;
+  background-color: red;
+  margin-right: 4px;
+}
