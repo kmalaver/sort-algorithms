@@ -1,47 +1,47 @@
 import { bubble } from './algorithms.js';
+import { generateRandomNumbers, makeNumberNodes, execSort } from './utils.js';
 
 const HEIGHT_DIF = 20;
 let numsArr = [];
+let time = 50;
 
-const generateRandomNumbers = (length, min = 0) => {
-  const numbers = [];
+// dom elements
+const container = document.getElementById('bars-container');
+const btnSort = document.getElementById('btn-sort');
+const btnCancel = document.getElementById('btn-cancel');
+const inputLength = document.getElementById('input-length');
+const inputTime = document.getElementById('input-time');
 
-  for (let i = min; i < length + min; i++) {
-    numbers.push(i * HEIGHT_DIF);
-  }
+// events
+btnSort.addEventListener('click', async () => {
+  btnSort.disabled = true;
+  inputLength.disabled = true;
+  inputTime.disabled = true;
+  btnCancel.disabled = false;
 
-  numbers.sort(() => (Math.random() > 0.5 ? 1 : -1));
+  await execSort(bubble, numsArr, container.childNodes, time);
 
-  return numbers;
-};
-
-const makeNumberNodes = (numbers) => {
-  const nodes = [];
-
-  numbers.forEach((number) => {
-    const node = document.createElement('div');
-    node.className = 'bar';
-    node.style.height = `${number + 10}px`;
-
-    nodes.push(node);
-  });
-
-  return nodes;
-};
-
-const app = document.getElementById('app');
-numsArr = generateRandomNumbers(10);
-
-app.append(...makeNumberNodes(numsArr));
-
-document.getElementById('sortBtn').addEventListener('click', () => {
-  bubble(numsArr, app.childNodes);
+  btnSort.disabled = false;
+  inputLength.disabled = false;
+  inputTime.disabled = false;
+  btnCancel.disabled = true;
 });
 
-document.getElementById('length').addEventListener('change', (e) => {
-  app.innerHTML = '';
-
-  const length = parseInt(e.currentTarget.value);
-  numsArr = generateRandomNumbers(length);
-  app.append(...makeNumberNodes(numsArr));
+inputLength.addEventListener('change', (e) => {
+  container.innerHTML = '';
+  numsArr = generateRandomNumbers(parseInt(e.currentTarget.value), HEIGHT_DIF);
+  container.append(...makeNumberNodes(numsArr));
 });
+
+inputTime.addEventListener('change', (e) => {
+  time = parseInt(e.currentTarget.value);
+});
+
+function init() {
+  inputLength.value = 10;
+  inputTime.value = time;
+  numsArr = generateRandomNumbers(10, HEIGHT_DIF);
+  container.append(...makeNumberNodes(numsArr));
+}
+
+init();

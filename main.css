@@ -11,9 +11,10 @@ body {
   padding: 1rem;
   background: #fcfcfc;
   display: flex;
+  align-items: center;
 }
 
-#app {
+.bars-container {
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -34,4 +35,11 @@ body {
 
 .bar.finish {
   background-color: teal;
+}
+
+.btn-action {
+}
+
+.btn-action:disabled {
+  display: none;
 }
