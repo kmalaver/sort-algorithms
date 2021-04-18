@@ -4,3 +4,15 @@ export function swap(node1, node2) {
   node1.replaceWith(node2);
   parent.insertBefore(node1, afterNode2);
 }
+
+export function focusNode(node) {
+  node.classList.add('focused');
+
+  return () => {
+    node.classList.remove('focused');
+  };
+}
+
+export function finishNode(node) {
+  node.classList.add('finish');
+}

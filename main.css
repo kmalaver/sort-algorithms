@@ -1,11 +1,37 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 0;
+}
+
+.header {
+  padding: 1rem;
+  background: #fcfcfc;
+  display: flex;
+}
+
 #app {
   display: flex;
+  justify-content: center;
   align-items: flex-end;
+  transition: 0.2s;
+  max-width: 1000px;
+  margin: auto;
 }
 
 .bar {
-  width: 20px;
-  height: 80px;
-  background-color: red;
+  flex: 1 1 0px;
+  background-color: rgb(57, 182, 231);
   margin-right: 4px;
+}
+
+.bar.focused {
+  background-color: rgb(255, 208, 0);
+}
+
+.bar.finish {
+  background-color: teal;
 }

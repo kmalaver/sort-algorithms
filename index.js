@@ -1,6 +1,7 @@
 import { bubble } from './algorithms.js';
 
 const HEIGHT_DIF = 20;
+let numsArr = [];
 
 const generateRandomNumbers = (length, min = 0) => {
   const numbers = [];
@@ -21,6 +22,7 @@ const makeNumberNodes = (numbers) => {
     const node = document.createElement('div');
     node.className = 'bar';
     node.style.height = `${number + 10}px`;
+
     nodes.push(node);
   });
 
@@ -28,10 +30,18 @@ const makeNumberNodes = (numbers) => {
 };
 
 const app = document.getElementById('app');
-const rand = generateRandomNumbers(10);
+numsArr = generateRandomNumbers(10);
 
-app.append(...makeNumberNodes(rand));
+app.append(...makeNumberNodes(numsArr));
 
-const nodes = app.childNodes;
+document.getElementById('sortBtn').addEventListener('click', () => {
+  bubble(numsArr, app.childNodes);
+});
 
-bubble(rand, nodes);
+document.getElementById('length').addEventListener('change', (e) => {
+  app.innerHTML = '';
+
+  const length = parseInt(e.currentTarget.value);
+  numsArr = generateRandomNumbers(length);
+  app.append(...makeNumberNodes(numsArr));
+});
