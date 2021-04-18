@@ -28,9 +28,10 @@ const makeNumberNodes = (numbers) => {
 };
 
 const app = document.getElementById('app');
-
 const rand = generateRandomNumbers(10);
 
-console.log(bubble(rand));
-
 app.append(...makeNumberNodes(rand));
+
+const nodes = app.childNodes;
+
+bubble(rand, nodes);
