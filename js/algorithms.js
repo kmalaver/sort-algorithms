@@ -8,17 +8,15 @@ export async function bubble(arr, nodes, control) {
       if (control.stop) {
         return;
       }
+
+      await focusNode(control.time, 'focused', nodes[j], nodes[j + 1]);
+
       if (arr[j] > arr[j + 1]) {
         let temp = arr[j];
         arr[j] = arr[j + 1];
         arr[j + 1] = temp;
-        const unfocus = focusNode(nodes[j]);
-        const unfocus2 = focusNode(nodes[j + 1]);
-        await sleep(control.time);
         swap(nodes[j], nodes[j + 1]);
-
-        unfocus();
-        unfocus2();
+        await focusNode(control.time, 'swap', nodes[j], nodes[j + 1]);
       }
     }
   }
@@ -30,6 +28,10 @@ export async function selectionSort(A, nodes, control) {
   for (let i = 0; i < len - 1; i = i + 1) {
     let j_min = i;
     for (let j = i + 1; j < len; j = j + 1) {
+      if (control.stop) {
+        return;
+      }
+      await focusNode(control.time, 'focused', nodes[i], nodes[j]);
       if (A[j] < A[j_min]) {
         j_min = j;
       }
@@ -39,14 +41,8 @@ export async function selectionSort(A, nodes, control) {
       A[i] = A[j_min];
       A[j_min] = temp;
 
-      const unfocus = focusNode(nodes[i]);
-      const unfocus2 = focusNode(nodes[j_min]);
-
-      await sleep(control.time * 2);
       swap(nodes[i], nodes[j_min]);
-
-      unfocus();
-      unfocus2();
+      await focusNode(control.time, 'swap', nodes[i], nodes[j_min]);
     }
   }
 }

@@ -32,34 +32,21 @@ export const makeNumberNodes = (numbers) => {
   return nodes;
 };
 
-export function swap(node1, node2) {
+export async function swap(node1, node2) {
   const afterNode2 = node2.nextElementSibling;
   const parent = node2.parentNode;
   node1.replaceWith(node2);
   parent.insertBefore(node1, afterNode2);
 }
 
-export function focusNode(node) {
-  node.classList.add('focused');
+export async function focusNode(time, className, ...nodes) {
+  for (const node of nodes) {
+    node.classList.add(className);
+  }
 
-  return () => {
-    node.classList.remove('focused');
-  };
-}
+  await sleep(time);
 
-export function finishNode(node) {
-  node.classList.add('finish');
-}
-
-export async function execSort(algorithm, arr, nodes, time) {
-  const control = {
-    time,
-    stop: false,
-  };
-
-  // setTimeout(() => {
-  //   control.stop = true;
-  // }, 1000);
-
-  await algorithm(arr, nodes, control);
+  for (const node of nodes) {
+    node.classList.remove(className);
+  }
 }
