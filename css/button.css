@@ -35,3 +35,51 @@
 .btn-action:disabled {
   display: none;
 }
+
+.hamburger-container {
+  position: relative;
+  display: none;
+}
+
+.hamburger-container > input {
+  position: absolute;
+  opacity: 0;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+}
+
+.hamburger > div {
+  width: 20px;
+  height: 4px;
+  margin-bottom: 4px;
+  background-color: var(--color-dark);
+}
+
+@media (max-width: 800px) {
+  .hamburger-container {
+    display: block;
+  }
+
+  .menu {
+    position: fixed;
+    width: 300px;
+    height: 100%;
+    top: 45px;
+    flex-direction: column;
+    background-color: #fff;
+    right: -300px;
+    padding: 1rem;
+    transition: right 0.2s;
+    z-index: 5;
+  }
+
+  .menu.active {
+    right: 0;
+  }
+}

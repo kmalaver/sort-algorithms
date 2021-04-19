@@ -11,34 +11,37 @@
     <div class="app">
       <header class="header">
         <strong class="logo"> Sort Algorithms </strong>
-        <div>
-          <label for="input-length">Length</label>
-          <input
-            class="range"
-            id="input-length"
-            type="range"
-            min="10"
-            max="50"
-            step="1"
-          />
+        <div id="menu" class="menu">
+          <div>
+            <label for="input-length">Length</label>
+            <input
+              class="range"
+              id="input-length"
+              type="range"
+              min="10"
+              max="50"
+              step="1"
+            />
+          </div>
+          <div>
+            <label for="input-time">Time</label>
+            <input
+              class="range"
+              id="input-time"
+              type="range"
+              min="1"
+              max="10"
+              step="1"
+            />
+          </div>
 
-          <label for="input-time">Time</label>
-          <input
-            class="range"
-            id="input-time"
-            type="range"
-            min="1"
-            max="10"
-            step="1"
-          />
+          <label class="select" for="slct">
+            <select id="select-algorithm" required="required"></select>
+            <svg>
+              <use xlink:href="#select-arrow-down"></use>
+            </svg>
+          </label>
         </div>
-
-        <label class="select" for="slct">
-          <select id="select-algorithm" required="required"></select>
-          <svg>
-            <use xlink:href="#select-arrow-down"></use>
-          </svg>
-        </label>
         <div class="btn-container">
           <button class="btn-action" id="btn-sort">Sort</button>
           <button class="btn-action" id="btn-new-array" disabled>
@@ -48,6 +51,14 @@
             Cancel
           </button>
         </div>
+        <label class="hamburger-container">
+          <input id="menu-toggle" type="checkbox" />
+          <div class="hamburger">
+            <div class="div"></div>
+            <div class="div"></div>
+            <div class="div"></div>
+          </div>
+        </label>
       </header>
       <main id="bars-container" class="bars-container"></main>
     </div>

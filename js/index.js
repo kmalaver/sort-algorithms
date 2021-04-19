@@ -14,6 +14,8 @@ const btnNewArray = document.getElementById('btn-new-array');
 const inputLength = document.getElementById('input-length');
 const inputTime = document.getElementById('input-time');
 const selectAlgorithm = document.getElementById('select-algorithm');
+const menuToggle = document.getElementById('menu-toggle');
+const menu = document.getElementById('menu');
 
 // events
 btnSort.addEventListener('click', async () => {
@@ -71,6 +73,10 @@ inputTime.addEventListener('change', (e) => {
 
 selectAlgorithm.addEventListener('change', (e) => {
   currentAlgorithm = parseInt(e.currentTarget.value);
+});
+
+menuToggle.addEventListener('change', (e) => {
+  menu.classList.toggle('active', e.currentTarget.checked);
 });
 
 function init() {
