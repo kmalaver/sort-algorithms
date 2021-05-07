@@ -10,9 +10,9 @@ function compare(a, b) {
   return a < b ? Compare.LESS_THAN : Compare.BIGGER_THAN;
 }
 
-export const name = 'Bubble Sort';
+export const name = 'Insertion Sort';
 
-async function insertionSort(arr, nodes, control) {
+async function insertionSort(arr, control) {
   const { length } = arr;
   let temp;
   for (let i = 1; i < length; i++) {
@@ -25,12 +25,12 @@ async function insertionSort(arr, nodes, control) {
 
       arr[j] = arr[j - 1];
 
-      await draw(arr, control.time);
+      await control.draw(arr, control.time);
       j--;
     }
 
     arr[j] = temp;
-    await draw(arr, control.time);
+    await control.draw(arr, control.time);
   }
 
   return arr;

@@ -39,11 +39,7 @@ btnSort.addEventListener('click', async () => {
 
   btnCancel.addEventListener('click', stop);
 
-  await algorithms[currentAlgorithm].fun(
-    numsArr,
-    container.childNodes,
-    control
-  );
+  await algorithms[currentAlgorithm].fun(numsArr, control);
 
   btnCancel.removeEventListener('click', stop);
 

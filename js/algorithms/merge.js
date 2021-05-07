@@ -1,15 +1,13 @@
 export const name = 'Merge Sort';
 
-async function mergeSort(arr, nodes, control) {
+async function mergeSort(arr, control) {
   if (arr.length > 1) {
     const { length } = arr;
     const middle = Math.floor(length / 2);
-    const left = await mergeSort(arr.slice(0, middle), nodes);
-    const right = await mergeSort(arr.slice(middle, length), nodes);
+    const left = await mergeSort(arr.slice(0, middle));
+    const right = await mergeSort(arr.slice(middle, length));
     arr = merge(left, right, compare);
   }
-
-  await draw(nodes[0].parentNode, arr);
   return arr;
 }
 

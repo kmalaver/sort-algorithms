@@ -1,4 +1,4 @@
-const algorithmFiles = ['bubble', 'cycle', 'insertion', 'merge', 'selection'];
+const algorithmFiles = ['bubble', 'cycle', 'insertion', 'selection'];
 
 async function getAlgorithms() {
   const algorithms = [];
@@ -6,20 +6,12 @@ async function getAlgorithms() {
   for (const name of algorithmFiles) {
     const algorithm = await import(`./algorithms/${name}.js`);
     algorithms.push({
-      name: algorithm.name || 'Unnamed',
+      name: algorithm.name || 'Nameless sort',
       fun: algorithm.default,
     });
   }
 
   return algorithms;
 }
-
-// const algorithms = [
-//   { name: 'Bubble Sort', fun: bubble },
-//   { name: 'Selection Sort', fun: selectionSort },
-//   { name: 'Insertion Sort', fun: insertionSort },
-//   { name: 'Merge Sort', fun: mergeSort },
-//   { name: 'Cycle Sort', fun: cycle },
-// ];
 
 export default getAlgorithms;

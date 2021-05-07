@@ -1,6 +1,6 @@
 export const name = 'Bubble Sort';
 
-async function bubble(arr, nodes, control) {
+async function bubble(arr, control) {
   let len = arr.length;
 
   for (let i = 0; i < len; i++) {

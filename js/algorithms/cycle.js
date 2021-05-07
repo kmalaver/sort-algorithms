@@ -1,6 +1,6 @@
 export const name = 'Cycle Sort';
 
-async function cycle(list, nodes, control) {
+async function cycle(list, control) {
   for (let cycleStart = 0; cycleStart < list.length - 1; cycleStart++) {
     let item = list[cycleStart];
 
@@ -17,7 +17,6 @@ async function cycle(list, nodes, control) {
     const swap = list[pos];
     list[pos] = item;
     item = swap;
-    await draw(list, control.time);
 
     while (pos != cycleStart) {
       pos = cycleStart;
@@ -33,7 +32,7 @@ async function cycle(list, nodes, control) {
       list[pos] = item;
       item = swap;
 
-      await draw(list, control.time);
+      await control.draw(list, control.time);
     }
   }
 

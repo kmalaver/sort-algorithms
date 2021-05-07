@@ -1,6 +1,6 @@
-export const name = 'Bubble Sort';
+export const name = 'Selection Sort';
 
-async function selectionSort(arr, nodes, control) {
+async function selectionSort(arr, control) {
   let len = arr.length;
   for (let i = 0; i < len - 1; i = i + 1) {
     let j_min = i;
@@ -15,7 +15,7 @@ async function selectionSort(arr, nodes, control) {
       let temp = arr[i];
       arr[i] = arr[j_min];
       arr[j_min] = temp;
-      await draw(arr, control.time);
+      await control.draw(arr, control.time);
     }
   }
 }
