@@ -67,6 +67,10 @@ async function insertionSort(arr, nodes, control) {
     let j = i;
     temp = arr[i];
     while (j > 0 && compare(arr[j - 1], temp) === Compare.BIGGER_THAN) {
+      if (control.stop) {
+        return;
+      }
+
       arr[j] = arr[j - 1];
 
       await draw(parent, arr);
@@ -81,6 +85,8 @@ async function insertionSort(arr, nodes, control) {
 
   return arr;
 }
+
+const mergeArr = [];
 
 async function mergeSort(arr, nodes, control) {
   if (arr.length > 1) {
@@ -107,11 +113,62 @@ function merge(left, right, compare) {
   return result.concat(i < left.length ? left.slice(i) : right.slice(j));
 }
 
+async function cycle(list, nodes, control) {
+  const parent = nodes[0].parentNode;
+  // last item will already be in place
+  for (let cycleStart = 0; cycleStart < list.length - 1; cycleStart++) {
+    let item = list[cycleStart];
+
+    // find where to put the item
+    let pos = cycleStart;
+    for (let i = cycleStart + 1; i < list.length; i++) {
+      // TODO: comparison
+      if (list[i] < item) pos += 1;
+    }
+
+    // if the item is already there, this is not a cycle
+    if (pos == cycleStart) continue;
+
+    // otherwise, put the item there or right after any duplicates
+    // TODO: comparison
+    while (item == list[pos]) {
+      pos++;
+    }
+    const swap = list[pos];
+    list[pos] = item; // TODO: Write
+    item = swap;
+    console.log('write');
+    await draw(parent, list);
+
+    // rotate the rest of the cycle
+    while (pos != cycleStart) {
+      // find where to put the item
+      pos = cycleStart;
+      for (let i = cycleStart + 1; i < list.length; i++) {
+        if (list[i] < item) pos += 1;
+      }
+
+      // put the item there or right after any duplicates
+      while (item == list[pos]) {
+        pos += 1;
+      }
+      const swap = list[pos];
+      list[pos] = item;
+      item = swap;
+
+      await draw(parent, list);
+    }
+  }
+
+  return list;
+}
+
 const algorithms = [
   { name: 'Bubble Sort', fun: bubble },
   { name: 'Selection Sort', fun: selectionSort },
   { name: 'Insertion Sort', fun: insertionSort },
   { name: 'Merge Sort', fun: mergeSort },
+  { name: 'Cycle Sort', fun: cycle },
 ];
 
 export default algorithms;
