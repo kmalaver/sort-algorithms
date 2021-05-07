@@ -39,6 +39,14 @@ export async function swap(node1, node2) {
   parent.insertBefore(node1, afterNode2);
 }
 
+export async function draw(container, numsArr) {
+  container.innerHTML = '';
+  const nodes = makeNumberNodes(numsArr);
+  console.log(nodes);
+  container.append(...nodes);
+  await sleep(100);
+}
+
 export async function focusNode(time, className, ...nodes) {
   for (const node of nodes) {
     node.classList.add(className);
