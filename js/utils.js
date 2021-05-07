@@ -1,3 +1,9 @@
+const colors = {
+  DEFAULT: '#1abc9c',
+  FOCUSED: '#f1c40f',
+  SWAP: '#e74c3c',
+};
+
 export function sleep(time) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -8,7 +14,6 @@ export function sleep(time) {
 
 export const generateRandomNumbers = (length, diff = 1, min = 0) => {
   const numbers = [];
-
   for (let i = min; i < length + min; i++) {
     numbers.push(i * diff);
   }
@@ -23,7 +28,7 @@ export const makeNumberNodes = (numbers) => {
 
   numbers.forEach((number) => {
     const node = document.createElement('div');
-    node.className = 'bar';
+    node.className = `bar`;
     node.style.height = `${(number / numbers.length) * 4 + 20}%`;
 
     nodes.push(node);
@@ -32,29 +37,10 @@ export const makeNumberNodes = (numbers) => {
   return nodes;
 };
 
-export async function swap(node1, node2) {
-  const afterNode2 = node2.nextElementSibling;
-  const parent = node2.parentNode;
-  node1.replaceWith(node2);
-  parent.insertBefore(node1, afterNode2);
-}
-
-export async function draw(container, numsArr) {
-  container.innerHTML = '';
+export async function draw(numsArr, time) {
+  const container = document.getElementById('bars-container');
   const nodes = makeNumberNodes(numsArr);
-  console.log(nodes);
+  container.innerHTML = '';
   container.append(...nodes);
-  await sleep(100);
-}
-
-export async function focusNode(time, className, ...nodes) {
-  for (const node of nodes) {
-    node.classList.add(className);
-  }
-
   await sleep(time);
-
-  for (const node of nodes) {
-    node.classList.remove(className);
-  }
 }

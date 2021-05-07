@@ -1,6 +1,8 @@
-import algorithms from './algorithms.js';
+import getAlgorithms from './algorithms.js';
 import { generateRandomNumbers, makeNumberNodes } from './utils.js';
+import { draw } from './utils.js';
 
+let algorithms;
 const HEIGHT_DIF = 20;
 let numsArr = [];
 let time = 5;
@@ -28,6 +30,7 @@ btnSort.addEventListener('click', async () => {
   const control = {
     time: time * (1000 / numsArr.length),
     stop: false,
+    draw,
   };
 
   const stop = () => {
@@ -79,19 +82,25 @@ menuToggle.addEventListener('change', (e) => {
   menu.classList.toggle('active', e.currentTarget.checked);
 });
 
-function init() {
+async function init() {
   inputLength.value = 30;
   inputTime.value = time;
   numsArr = generateRandomNumbers(30, HEIGHT_DIF);
   container.append(...makeNumberNodes(numsArr));
 
-  algorithms.forEach((algorithm, i) => {
-    const option = document.createElement('option');
-    option.value = i;
-    option.innerText = algorithm.name;
+  algorithms = await getAlgorithms();
 
-    selectAlgorithm.appendChild(option);
-  });
+  function genOptions(algorithms) {
+    algorithms.forEach((algorithm, i) => {
+      const option = document.createElement('option');
+      option.value = i;
+      option.innerText = algorithm.name;
+
+      selectAlgorithm.appendChild(option);
+    });
+  }
+
+  genOptions(algorithms);
 }
 
 init();
